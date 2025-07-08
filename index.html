@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🦭 SealLoverBtn – Meet your Random Seal 🦭</title>
+  <link rel="icon" type="image/x-icon" href="images/nico_the_seal.ico">
+  <style>
+    body {
+      text-align: center;
+      font-family: sans-serif;
+      padding: 2rem;
+      background: #f0f8ff;
+    }
+
+    button {
+      padding: 1rem 2rem;
+      font-size: 1.2rem;
+      border: none;
+      border-radius: 8px;
+      background: #007BFF;
+      color: white;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #0056b3;
+    }
+
+    img {
+      margin-top: 2rem;
+      max-width: 90%;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    #credit {
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+    }
+
+    footer {
+      margin-top: 3rem;
+      font-size: 0.8rem;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>🦭 SealLoverBtn – Meet your Random Seal 🦭</h1>
+  <button onclick="getRandomSeal()">Scratch my Bellayyyy 🦭</button>
+  <div>
+    <img id="sealImage" src="" alt="Random seal will appear here." />
+    <p id="credit"></p>
+
+  </div>
+
+  <footer>
+    Powered by <a href="https://unsplash.com" target="_blank" rel="noopener noreferrer">Unsplash</a>
+  </footer>
+
+  <script>
+    async function getRandomSeal() {
+      try {
+        const response = await fetch("https://sealloverbtn-1.onrender.com/seal");
+        const data = await response.json();
+
+        if (data.error) throw new Error(data.error);
+
+        // Set seal image
+        const image = document.getElementById("sealImage");
+        image.src = data.image;
+        image.alt = data.alt || "Seal image";
+
+        // Set photographer credit
+        const credit = document.getElementById("credit");
+        credit.innerHTML = `Photo by <a href="${data.profile}" target="_blank" rel="noopener noreferrer">${data.photographer}</a> on <a href="https://unsplash.com/?utm_source=seal_surprise&utm_medium=referral" target="_blank" rel="noopener noreferrer">Unsplash</a>`;
+
+        // Log metadata to backend
+        await fetch("https://sealloverbtn-1.onrender.com/save", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            photographer: data.photographer,
+            profile: data.profile,
+            image: data.image
+          })
+        });
+      } catch (error) {
+        console.error("Error fetching image:", error);
+        alert("Could not load a seal right now. Try again later!");
+      }
+    }
+    getRandomSeal();
+  </script>
+</body>
+
+</html>

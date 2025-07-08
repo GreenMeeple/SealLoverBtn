@@ -1,23 +1,41 @@
 from flask import Flask, request, jsonify
 import os
-import shutil
+import json
+from datetime import datetime
 
 app = Flask(__name__)
 
-@app.route('/move', methods=['POST'])
-def move_file():
+DATA_FILE = "saved_metadata.json"
+
+@app.route("/save", methods=["POST"])
+def save_metadata():
     data = request.get_json()
-    filename = data.get("filename")
-    
-    src = os.path.join("images", filename)
-    dst = os.path.join("new", filename)
+    required = ["photographer", "profile", "image"]
 
-    if not os.path.exists(src):
-        return jsonify({"error": "File not found"}), 404
+    if not all(key in data for key in required):
+        return jsonify({"error": "Missing required fields"}), 400
 
-    shutil.move(src, dst)
-    return jsonify({"status": "moved", "file": filename}), 200
+    # Add timestamp
+    data["timestamp"] = datetime.utcnow().isoformat()
+
+    try:
+        # Load existing data if file exists
+        if os.path.exists(DATA_FILE):
+            with open(DATA_FILE, "r") as f:
+                saved = json.load(f)
+        else:
+            saved = []
+
+        saved.append(data)
+
+        # Write updated data
+        with open(DATA_FILE, "w") as f:
+            json.dump(saved, f, indent=2)
+
+        return jsonify({"status": "saved"}), 200
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 @app.route("/")
 def home():
-    return "✅ Seal Server is Running!"
+    return "✅ Seal Metadata Server is Live!"
