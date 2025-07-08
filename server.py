@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify
 import os
 import json
+import requests
 from datetime import datetime
 
 app = Flask(__name__)
@@ -39,3 +40,27 @@ def save_metadata():
 @app.route("/")
 def home():
     return "✅ Seal Metadata Server is Live!"
+
+@app.route("/seal", methods=["GET"])
+def get_seal():
+    UNSPLASH_KEY = os.environ.get("UNSPLASH_ACCESS_KEY")
+    if not UNSPLASH_KEY:
+        return jsonify({"error": "No API key configured"}), 500
+
+    try:
+        res = requests.get(
+            "https://api.unsplash.com/photos/random",
+            params={"query": "seal"},
+            headers={"Authorization": f"Client-ID {UNSPLASH_KEY}"}
+        )
+        data = res.json()
+
+        return jsonify({
+            "image": data["urls"]["regular"],
+            "alt": data.get("alt_description", ""),
+            "photographer": data["user"]["name"],
+            "profile": data["user"]["links"]["html"],
+            "download": data["links"]["download_location"]
+        })
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
