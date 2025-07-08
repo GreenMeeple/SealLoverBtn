@@ -2,9 +2,9 @@
 
 Scratch my Bellaaayyy to get a new seal image!
 
-## 🦭 Web Demo
+## 🦭 [Web Demo](https://greenmeeple.github.io/SealLoverBtn/)
 
-![](images/web_demo.png)
+[![](images/web_demo.png)](https://greenmeeple.github.io/SealLoverBtn/)
 
 ## Credits
 
