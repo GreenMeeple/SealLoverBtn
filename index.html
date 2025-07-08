@@ -67,14 +67,15 @@
 <body>
   <h1>🦭 SealLoverBtn – Meet your Random Seal 🦭</h1>
   <button onclick="getRandomSeal()">Scratch my Bellayyyy 🦭</button>
+  <h2>Oh no! Fake seal lovers corrupted our database with fake seals!</h2>
+  <h2>Help seals find their friends! 💙</h2>
+  <div style="margin-top: 1rem;">
+    <button id="trueSealBtn" onclick="voteSeal(true)">🦭 Seal Friends!</button>
+    <button id="fakeSealBtn" onclick="voteSeal(false)">🚫 Fake Seals!</button>
+  </div>
   <div>
     <img id="sealImage" src="" alt="Random seal will appear here." />
     <p id="credit"></p>
-  </div>
-
-  <div style="margin-top: 1rem;">
-    <button id="trueSealBtn" onclick="voteSeal(true)">🦭 True Seal</button>
-    <button id="fakeSealBtn" onclick="voteSeal(false)">🚫 Fake Seal</button>
   </div>
 
   <footer>
