@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: seal-server
+    env: python
+    buildCommand: ""
+    startCommand: gunicorn server:app
