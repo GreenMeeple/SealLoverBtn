@@ -1,11 +1,12 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS 
 import os
 import json
 import requests
 from datetime import datetime
 
 app = Flask(__name__)
-
+CORS(app, origins=["https://greenmeeple.github.io"]) 
 DATA_FILE = "saved_metadata.json"
 
 @app.route("/save", methods=["POST"])
@@ -39,7 +40,15 @@ def save_metadata():
 
 @app.route("/")
 def home():
-    return "✅ Seal Metadata Server is Live!"
+    try:
+        if os.path.exists(DATA_FILE):
+            with open(DATA_FILE, "r") as f:
+                saved = json.load(f)
+            return jsonify(saved)
+        else:
+            return jsonify([])
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 @app.route("/seal", methods=["GET"])
 def get_seal():
