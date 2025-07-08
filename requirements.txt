@@ -1,4 +1,5 @@
 flask
-gunicorn
 requests
 flask-cors
+psycopg2-binary
+sqlalchemy
