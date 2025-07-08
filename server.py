@@ -28,6 +28,10 @@ def save_metadata():
         else:
             saved = []
 
+        # Check for duplicates by image URL
+        if any(entry["image"] == data["image"] for entry in saved):
+            return jsonify({"status": "duplicate", "message": "Image already saved"}), 200
+
         saved.append(data)
 
         # Write updated data
