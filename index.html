@@ -2,85 +2,49 @@
 <html lang="en">
 
 <head>
+  <link rel="stylesheet" href="styles.css">
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>🦭 SealLoverBtn – Meet your Random Seal 🦭</title>
   <link rel="icon" type="image/x-icon" href="images/nico_the_seal.ico">
-  <style>
-    body {
-      text-align: center;
-      font-family: sans-serif;
-      padding: 2rem;
-      background: #f0f8ff;
-    }
-
-    button {
-      padding: 1rem 2rem;
-      font-size: 1.1rem;
-      margin: 0.5rem;
-      border: none;
-      border-radius: 8px;
-      background: #007BFF;
-      color: white;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background: #0056b3;
-    }
-
-    #trueSealBtn {
-      background: #28a745;
-    }
-
-    #trueSealBtn:hover {
-      background: #1e7e34;
-    }
-
-    #fakeSealBtn {
-      background: #dc3545;
-    }
-
-    #fakeSealBtn:hover {
-      background: #a71d2a;
-    }
-
-    img {
-      margin-top: 2rem;
-      max-width: 90%;
-      border-radius: 10px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    }
-
-    #credit {
-      font-size: 0.9rem;
-      margin-top: 0.5rem;
-    }
-
-    footer {
-      margin-top: 3rem;
-      font-size: 0.8rem;
-    }
-  </style>
 </head>
 
+
+
 <body>
-  <h1><img id="nico_the_seal" src="images/nico_the_seal.ico" alt="Random seal will appear here." /> SealLoverBtn – Meet your Random Seal 🦭</h1>
-  <button onclick="getRandomSeal()">Scratch my Bellayyyy 🦭</button>
-  <h2>Oh no! Fake seal lovers corrupted our database with fake seals!</h2>
-  <h2>Help seals find their friends! 💙</h2>
-  <div style="margin-top: 1rem;">
-    <button id="trueSealBtn" onclick="voteSeal(true)">🦭 Seal Friends!</button>
-    <button id="fakeSealBtn" onclick="voteSeal(false)">🚫 Fake Seals!</button>
-  </div>
-  <div>
-    <img id="sealImage" src="" alt="Random seal will appear here." />
-    <p id="credit"></p>
+  <div id="mainContent" class="flex-container">
+    <div class="text-section">
+      <h1><img id="nico_the_seal" src="images/nico_the_seal.ico" alt="Random seal will appear here." /></a> SealLoverBtn</h1>
+      <h2>Meet your Random Seal 🦭</h2>
+      <p>Random seal is approaching you when you visit them!</p>
+      <p>Click "Is a seal!" to store it in the seal database!</p>
+      <p>By GreenMeeple
+        <a href="https://greenmeeple.github.io/"><img src="https://greenmeeple.github.io/img/logo.png" alt="GreenMeeple" height="28"></a> and Cheesedseal
+        <a href="https://cheesedseal.github.io/"><img src="https://cheesedseal.github.io/src/header.jpg" alt="Cheesedseal" height="28"></a>
+      </p>
+      <p>Check out more cute useless website <a href="https://greenmeeple.github.io/">here</a> or <a href="https://buymeacoffee.com/greenmeeple">support us</a>!</p>
+
+    </div>
+
+    <div class="image-section">
+      <img id="sealImage" src="" alt="Random seal will appear here." />
+      <p id="credit"></p>
+      <div style="margin-top: 1rem;">
+        <button id="trueSealBtn" onclick="voteSeal(true)">🦭 Is a seal!</button>
+        <button id="fakeSealBtn" onclick="voteSeal(false)">🚫 Not seals!</button>
+        <p>Oh no! Fake seal lovers corrupted our database with fake seals!</p>
+        <p>Help seals find their friends! 💙</p>
+      </div>
+    </div>
   </div>
 
+
   <footer>
-    <a href="https://greenmeeple.github.io/"><img src="https://greenmeeple.github.io/img/logo.png" alt="GreenMeeple" height="28"></a></br>
-    © 2025 <a href="https://greenmeeple.github.io/" target="_blank" rel="noopener noreferrer">GreenMeeple</a></br>
+    <a href="https://greenmeeple.github.io/"><img src="https://greenmeeple.github.io/img/logo.png" alt="GreenMeeple" height="28"></a>
+    <a href="https://cheesedseal.github.io/"><img src="https://cheesedseal.github.io/src/header.jpg" alt="Cheesedseal" height="28"></a>
+    <a href="https://buymeacoffee.com/greenmeeple"><img src="images/buymeacoffee.png" alt="GreenMeeple" height="28"></a></br>
+    © 2025 <a href="https://greenmeeple.github.io/" target="_blank" rel="noopener noreferrer">GreenMeeple, Cheesedseal</a></br>
     Powered by <a href="https://unsplash.com" target="_blank" rel="noopener noreferrer">Unsplash</a></br>
   </footer>
 
