@@ -4,7 +4,7 @@
 
 ## Help seals find their friends!
 
-Oh no, photographers cannot distinguish seals and sealions! We need to help seals to meet their friends!
+Oh no! Fake seal lovers corrupted our database with fake seals! We need to help seals to meet their friends!
 
 You friends will be saved in our sealtabase!
 
